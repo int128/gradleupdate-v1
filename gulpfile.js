@@ -8,10 +8,12 @@ gulp.task('default', (cb) => seq('clean', 'build', cb));
 
 gulp.task('watch', ['default'], () => {
   gulp.watch('src/main/js/**/*', ['webpack']);
-  gulp.watch('static/**/*', ['static-without-reload']);
+  gulp.watch('src/main/static/**/*', ['static']);
+  gulp.watch('src/main/groovlet/**/*', ['groovlet']);
+  gulp.watch('src/main/config/**/*', ['config']);
 });
 
-gulp.task('build', ['webpack', 'vendor', 'static']);
+gulp.task('build', ['webpack', 'vendor', 'static', 'groovlet', 'config']);
 
 gulp.task('webpack', () =>
   gulp.src('src/main/js/main.jsx')
@@ -29,24 +31,21 @@ gulp.task('webpack', () =>
     .pipe(uglify())
     .pipe(gulp.dest('build/assets')));
 
-gulp.task('vendor', ['vendor-fonts'], () =>
+gulp.task('vendor', () =>
   gulp.src([
-      'node_modules/react/dist/react.min.js',
-      'node_modules/bootswatch/cosmo/bootstrap.min.css',
-    ]).pipe(gulp.dest('build/assets')));
-
-gulp.task('vendor-fonts', () =>
-  gulp.src([
-      'node_modules/bootswatch/fonts/**',
-    ]).pipe(gulp.dest('build/assets/fonts')));
+    'node_modules/react/dist/react.min.js',
+    'node_modules/bootswatch/cosmo/bootstrap.min.css',
+    'node_modules/bootswatch/fonts**/*',
+  ]).pipe(gulp.dest('build/assets')));
 
 gulp.task('static', () =>
-  gulp.src('static/**/*').pipe(gulp.dest('build/assets')));
+  gulp.src('src/main/static/**/*').pipe(gulp.dest('build/assets')));
 
-// prevent reloading App Engine dev server
-gulp.task('static-without-reload', () =>
-  gulp.src(['static/**/*', '!static/WEB-INF/appengine-web.xml'])
-    .pipe(gulp.dest('build/assets')));
+gulp.task('groovlet', () =>
+  gulp.src('src/main/groovlet/**/*').pipe(gulp.dest('build/assets/WEB-INF/groovy')));
+
+gulp.task('config', () =>
+  gulp.src('src/main/config/**/*').pipe(gulp.dest('build/assets/WEB-INF')));
 
 gulp.task('clean', (cb) => del([
   'build/assets/**',
