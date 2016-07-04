@@ -1,5 +1,5 @@
 buildscript {
-    ext.gaeVersion = '1.9.17'
+    ext.gaeVersion = '1.9.34'
     repositories {
         jcenter()
     }
@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.4.4'
+    compile 'org.codehaus.groovy:groovy-all:2.4.6'
     compile 'com.github.groovy-wslite:groovy-wslite:1.1.2'
     compile 'org.gaelyk:gaelyk:2.1.2'
 
