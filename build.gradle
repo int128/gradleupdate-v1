@@ -18,6 +18,9 @@ repositories {
     jcenter()
 }
 
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
+
 dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.4.6'
     compile 'com.github.groovy-wslite:groovy-wslite:1.1.2'
@@ -31,24 +34,20 @@ dependencies {
     testCompile 'org.gaelyk:gaelyk-spock:0.4'
     testCompile "com.google.appengine:appengine-api-stubs:$gaeVersion"
     testCompile "com.google.appengine:appengine-testing:$gaeVersion"
-}
 
-sourceCompatibility = JavaVersion.VERSION_1_7
-targetCompatibility = JavaVersion.VERSION_1_7
-
-war {
-    webAppDirName = file('build/assets')
+    appengineSdk "com.google.appengine:appengine-java-sdk:$gaeVersion"
 }
 
 appengine {
-    disableUpdateCheck = true
+    downloadSdk = true
     warDir = file('build/assets')
     jvmFlags = ['-Xdebug', '-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8890']
-    appcfg {
-        oauth2 = true
-    }
+    appcfg { oauth2 = true }
 }
 
+war {
+    webAppDirName = appengine.warDir
+}
 sourceSets.main.output.classesDir = "${appengine.warDir}/WEB-INF/classes"
 
 task syncDependencies(type: Sync) {
