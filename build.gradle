@@ -41,7 +41,12 @@ appengine {
     jvmFlags = ['-Xdebug', '-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8890']
     downloadSdk = true
     disableUpdateCheck = true
-    appcfg { oauth2 = true }
+    appcfg {
+        oauth2 = true
+        if (file('build/appengine-key.json').exists()) {
+            extraOptions << '--service_account_json_key_file=build/appengine-key.json'
+        }
+    }
 }
 
 war {
