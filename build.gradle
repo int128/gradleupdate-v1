@@ -28,7 +28,7 @@ dependencies {
     compile "com.google.appengine:appengine-api-labs:$gaeVersion"
     compile 'javax.servlet:servlet-api:2.5'
 
-    testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
+    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
     testCompile 'org.gaelyk:gaelyk-spock:0.4'
     testCompile "com.google.appengine:appengine-api-stubs:$gaeVersion"
     testCompile "com.google.appengine:appengine-testing:$gaeVersion"
