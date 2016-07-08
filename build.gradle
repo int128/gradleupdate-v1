@@ -8,10 +8,8 @@ buildscript {
     }
 }
 
-plugins {
-    id 'groovy'
-    id 'war'
-}
+apply plugin: 'groovy'
+apply plugin: 'war'
 apply plugin: 'appengine'
 
 repositories {
@@ -39,19 +37,22 @@ dependencies {
 }
 
 appengine {
-    downloadSdk = true
-    warDir = file('build/assets')
+    warDir = file("$buildDir/assets")
     jvmFlags = ['-Xdebug', '-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8890']
+    downloadSdk = true
+    disableUpdateCheck = true
     appcfg { oauth2 = true }
 }
 
 war {
     webAppDirName = appengine.warDir
 }
-sourceSets.main.output.classesDir = "${appengine.warDir}/WEB-INF/classes"
 
-task syncDependencies(type: Sync) {
-    from configurations.runtime
-    into "${appengine.warDir}/WEB-INF/lib"
+task appengineWebApp(type: Sync) {
+    into("${appengine.warDir}/WEB-INF")
+    from 'src/main/web-inf'
+    into('lib') { from configurations.runtime }
 }
-tasks.appengineRun.dependsOn(tasks.syncDependencies)
+
+tasks.withType(AbstractCompile) { it.dependsOn appengineWebApp }
+sourceSets.main.output.classesDir = "${appengine.warDir}/WEB-INF/classes"
