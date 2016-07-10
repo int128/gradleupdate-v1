@@ -18,9 +18,8 @@ class TemplateRepository extends Repository {
 
     def bumpVersion(String version) {
         log.info("Bump to Gradle wrapper $version on $fullName")
-        def branch = "bump-to-$version"
-        removeBranch(branch)
-        cloneBranch('master', branch)
+        removeBranch(version)
+        cloneBranch('master', version)
     }
 
     def fetchGradleWrapperFiles() {
