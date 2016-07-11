@@ -22,7 +22,7 @@ if (eventType == 'watch' && json.action == 'started') {
     assert json.sender.login
     log.info("Queue updating repositories of stargazer ${json.sender.login}")
     defaultQueue.add(
-            url: '/internal/got-star/0.groovy',
+            url: '/tasks/got-star/0.groovy',
             params: [stargazer: json.sender.login])
 
 } else if (eventType == 'ping') {

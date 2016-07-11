@@ -25,6 +25,6 @@ if (nextPage) {
 page.current.each { stargazer ->
     log.info("Queue updating stargazer ${stargazer.login}")
     defaultQueue.add(
-            url: '/internal/got-star/1-stargazer.groovy',
+            url: '/tasks/got-star/1-stargazer.groovy',
             params: [stargazer: stargazer.login, gradle_version: params.gradle_version])
 }

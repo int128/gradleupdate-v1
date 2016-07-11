@@ -1,10 +1,10 @@
-all '/rss', forward: '/rss.groovy', cache: (7 * 24).hours
+all '/rss', forward: '/feed/rss.groovy', cache: (7 * 24).hours
 
-post '/authorize', forward: '/exchange-oauth-token.groovy'
+post '/authorize', forward: '/auth/exchange-token.groovy'
 
-post '/webhook', forward: '/receive-github-webhook.groovy'
-post '/webhook_test', forward: '/logging-github-webhook.groovy'
+post '/webhook', forward: '/github-webhook/receive-event.groovy'
+post '/webhook_test', forward: '/github-webhook/receive-test.groovy'
 
 get '/@owner/@repo/status', forward: '/status.groovy?full_name=@owner/@repo'
 
-get '/@owner/@repo/status.svg', forward: '/badge.groovy?full_name=@owner/@repo'
+get '/@owner/@repo/status.svg', forward: '/badge/gradle-status.groovy?full_name=@owner/@repo'
