@@ -1,5 +1,3 @@
-all '/rss', forward: '/feed/rss.groovy', cache: (7 * 24).hours
-
 post '/authorize', forward: '/auth/exchange-token.groovy'
 
 post '/webhook', forward: '/github-webhook/receive-event.groovy'
