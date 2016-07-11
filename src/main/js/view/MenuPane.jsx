@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export default class extends React.Component {
   onClick(e) {
@@ -7,22 +7,15 @@ export default class extends React.Component {
   }
   render() {
     return (
-      <nav className="navbar navbar-default">
-        <div className="container">
-          <ul className="nav navbar-nav">
-            <li><a className="navbar-brand" href="/">Gradle Update</a></li>
-          </ul>
-          <ul className="nav navbar-nav navbar-right">
-            <li>
-              <a href="#" onClick={this.onClick.bind(this)}>
-                <span className="glyphicon glyphicon-log-out"></span>
-                &nbsp;
-                Sign out
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <section className="text-center">
+        {this.props.user ? (
+          <div>
+            <img src={this.props.user.avatar_url} className="img-circle" width="128" height="128"/>
+            <h2>{this.props.user.name}</h2>
+            <p>@{this.props.user.login}</p>
+          </div>
+        ) : null}
+      </section>
     );
   }
 }

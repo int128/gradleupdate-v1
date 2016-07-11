@@ -1,9 +1,8 @@
-import React from 'react';
-
-import GitHub from '../repository/GitHub.jsx';
-
-import MenuPane from './MenuPane.jsx';
-import ContentPane from './ContentPane.jsx';
+import React from "react";
+import GitHub from "../repository/GitHub.jsx";
+import MenuPane from "./MenuPane.jsx";
+import ContentPane from "./ContentPane.jsx";
+import Footer from "./Footer.jsx";
 
 export default class extends React.Component {
   constructor(props) {
@@ -19,14 +18,19 @@ export default class extends React.Component {
   }
   render() {
     return (
-      <div className="container-fluid">
+      <div className="container">
         <div className="row">
-          <MenuPane
-            onSignOut={this.props.onUnauthorize.bind(this)}/>
-          <ContentPane
-            user={this.state.user}
-            repos={this.state.repos}/>
+          <div className="col-lg-3 col-md-3 col-sm-3">
+            <MenuPane
+              user={this.state.user}
+              onSignOut={this.props.onUnauthorize.bind(this)}/>
+          </div>
+          <div className="col-lg-9 col-md-9 col-sm-9">
+            <ContentPane
+              repos={this.state.repos}/>
+          </div>
         </div>
+        <Footer/>
       </div>
     );
   }

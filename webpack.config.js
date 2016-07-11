@@ -34,7 +34,7 @@ module.exports = {
     new CopyWebpackPlugin([
       {from: './static'},
       {from: './node_modules/react/dist/react.min.js'},
-      {from: './node_modules/bootswatch/cosmo/bootstrap.min.css'},
+      {from: './node_modules/bootswatch/flatly/bootstrap.min.css'},
       {from: './node_modules/bootswatch/fonts', to: 'fonts'}
     ])
   ]
