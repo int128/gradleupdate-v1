@@ -45,11 +45,6 @@
     </security-constraint>
 
     <error-page>
-        <exception-type>groovyx.net.http.HttpResponseException</exception-type>
-        <location>/util/handle-http-exception.groovy</location>
-    </error-page>
-
-    <error-page>
         <exception-type>java.lang.AssertionError</exception-type>
         <location>/util/handle-assertion-error.groovy</location>
     </error-page>
