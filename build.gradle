@@ -57,6 +57,11 @@ task appengineWebApp(type: Sync) {
     into("${appengine.warDir}/WEB-INF")
     from 'src/main/web-inf'
     into('lib') { from configurations.runtime }
+    doLast {
+        file("${appengine.warDir}/WEB-INF/appengine-web.xml").with {
+            it.text = it.text.replace('_VERSION_', System.getenv('CIRCLE_BRANCH'))
+        }
+    }
 }
 
 tasks.withType(AbstractCompile) { it.dependsOn appengineWebApp }

@@ -24,7 +24,7 @@ test:
 
 deployment:
   production:
-    branch: master
+    branch: /master|feature-.+/
     commands:
       - echo "$APPENGINE_KEY" | base64 --decode > build/appengine-key.json
       - ./gradlew appengineUpdate
