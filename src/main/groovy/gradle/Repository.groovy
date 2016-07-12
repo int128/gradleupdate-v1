@@ -17,6 +17,11 @@ class Repository implements WithGitHub, WithGitHubUserContent {
         "https://github.com/$fullName"
     }
 
+    def fetchMetadata() {
+        log.info("Fetching metadata of repository $fullName")
+        gitHub.fetch(fullName)
+    }
+
     def fetchGradleWrapperVersion(String branch) {
         log.info("Fetching Gradle wrapper version of repository $fullName:$branch")
         final path = 'gradle/wrapper/gradle-wrapper.properties'

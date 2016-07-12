@@ -2,7 +2,6 @@ package infrastructure
 
 import groovy.util.logging.Log
 import model.Credential
-
 import wslite.rest.ContentType
 import wslite.rest.RESTClient
 
@@ -24,6 +23,12 @@ class GitHub implements ErrorStatusHandler {
         }
         client = new RESTClient('https://api.github.com')
         client.httpClient.defaultHeaders += headers
+    }
+
+    def fetch(String repo) {
+        handleHttpResponseException(404: false) {
+            client.get(path: "/repos/$repo").json
+        }
     }
 
     boolean removeRepository(String repo) {

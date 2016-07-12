@@ -15,6 +15,11 @@ export default class extends React.Component {
                   {repo.owner.login}/{repo.name}
                   <br/>
                   {repo.description}
+                  <br/>
+                  <button className="btn btn-info"
+                    onClick={this.props.updateGradleWrapper.bind(this, repo.full_name)}>
+                    Update now
+                  </button>
                 </td>
               </tr>
             )) : null}
