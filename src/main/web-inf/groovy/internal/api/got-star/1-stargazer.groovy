@@ -33,7 +33,7 @@ page.current.findAll { repo ->
 }.each { repo ->
     log.info("Queue updating the repository $repo.full_name")
     defaultQueue.add(
-            url: '/tasks/pull-request-for-gradle/0.groovy',
+            url: '/internal/api/pull-request-for-gradle/0.groovy',
             params: [
                     full_name: repo.full_name,
                     branch: repo.default_branch,

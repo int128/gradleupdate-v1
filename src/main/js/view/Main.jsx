@@ -1,12 +1,9 @@
-import React from 'react';
-
-import Constants from '../Constants.jsx';
-
-import qwest from 'qwest';
-import queryString from 'query-string';
-
-import Authorized from './Authorized.jsx';
-import Unauthorized from './Unauthorized.jsx';
+import React from "react";
+import Constants from "../Constants.jsx";
+import qwest from "qwest";
+import queryString from "query-string";
+import Authorized from "./Authorized.jsx";
+import Unauthorized from "./Unauthorized.jsx";
 
 export default class extends React.Component {
   constructor(props) {
@@ -82,7 +79,7 @@ export default class extends React.Component {
 
 class GotCode extends React.Component {
   componentDidMount() {
-    qwest.post('/authorize', {code: this.props.code})
+    qwest.post('/api/authorize', {code: this.props.code})
       .then((xhr, response) => this.props.onGotToken(response.token))
       .catch((e) => this.props.onGotError(e));
   }

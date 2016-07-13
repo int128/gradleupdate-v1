@@ -4,7 +4,7 @@ final watcher = new VersionWatcher()
 
 watcher.performIfNewStableReleaseIsAvailable { gradleVersion ->
     defaultQueue.add(
-            url: '/tasks/found-new-gradle/0.groovy',
+            url: '/internal/api/found-new-gradle/0.groovy',
             params: [gradle_version: gradleVersion]
     )
 }

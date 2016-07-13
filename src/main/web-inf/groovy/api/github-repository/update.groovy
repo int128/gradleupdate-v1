@@ -33,7 +33,7 @@ if (!repositoryByGradleUpdate.permissions.pull) {
 
 log.info("Queue updating the repository $repositoryByGradleUpdate.full_name")
 defaultQueue.add(
-        url: '/tasks/pull-request-for-gradle/0.groovy',
+        url: '/internal/api/pull-request-for-gradle/0.groovy',
         params: [
                 full_name: repositoryByGradleUpdate.full_name,
                 branch: repositoryByGradleUpdate.default_branch,
